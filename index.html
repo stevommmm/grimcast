@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>grimcast</title>
+	<style type="text/css">
+		html, body { padding: 0; margin: 0; background: #222;}
+		img { max-width: 100%; max-height: 100%; }
+	</style>
+</head>
+<body>
+	<img src="/screenshot" />
+
+	<script type="text/javascript">
+		function swapscreenshot() {
+			let image = document.images[0];
+			let downloadingImage = new Image();
+			downloadingImage.onload = function(){
+				image.src = this.src;
+			};
+			downloadingImage.src = `/screenshot?t=${new Date().getTime()}`;
+		}
+
+		window.addEventListener('load', function() {
+			setInterval(swapscreenshot, 500);
+		});
+	</script>
+</body>
+</html>
